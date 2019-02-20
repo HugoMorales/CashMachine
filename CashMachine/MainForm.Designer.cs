@@ -47,6 +47,7 @@
             this.btnWithdraw.TabIndex = 1;
             this.btnWithdraw.Text = "Sacar";
             this.btnWithdraw.UseVisualStyleBackColor = true;
+            this.btnWithdraw.Click += new System.EventHandler(this.btnWithdraw_Click);
             // 
             // MainForm
             // 
