@@ -204,6 +204,8 @@
             this.Controls.Add(this.btnWithdraw);
             this.Controls.Add(this.tbxAmountWithdraw);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Cash Machine";
             this.ResumeLayout(false);
