@@ -74,6 +74,68 @@ namespace CashMachine
                                 +  Environment.NewLine + Environment.NewLine
                                 + "Insira apenas números", "Erro");
             }
+
+            tbxAmountWithdraw.Text = "";
+        }
+
+        private void btnClean_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text = "";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnNumber1_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text += "1";
+        }
+
+        private void btnNumber2_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text += "2";
+        }
+
+        private void btnNumber3_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text += "3";
+        }
+
+        private void btnNumber4_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text += "4";
+        }
+
+        private void btnNumber5_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text += "5";
+        }
+
+        private void btnNumber6_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text += "6";
+        }
+
+        private void btnNumber7_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text += "7";
+        }
+
+        private void btnNumber8_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text += "8";
+        }
+
+        private void btnNumber9_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text += "9";
+        }
+
+        private void btnNumber0_Click(object sender, EventArgs e)
+        {
+            tbxAmountWithdraw.Text += "0";
         }
     }
 }
