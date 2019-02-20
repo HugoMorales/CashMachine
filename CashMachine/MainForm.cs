@@ -19,62 +19,61 @@ namespace CashMachine
 
         private void btnWithdraw_Click(object sender, EventArgs e)
         {
-            int amount;
-            String n100, n50, n20, n10;
+            int amount, i;
+            String resultNotes = "";
+            List<String> listNotes = new List<String>();
 
-            if(int.TryParse(tbxAmountWithdraw.Text, out amount))
-            {
-                if (amount == 0)
-                    MessageBox.Show("Entrada inválida"
-                                  +  Environment.NewLine + Environment.NewLine
-                                  + "Insira um valor maior que zero", "Erro");
-                else
-                {
-                    Atm withdraw = new Atm();
-
-                    if (withdraw.CalcWithdraw(amount))
-                    {
-                        if (withdraw.N100notes > 0)
-                            n100 = "Notas de 100 reais: " + withdraw.N100notes.ToString() + Environment.NewLine;
-                        else
-                            n100 = "";
-
-                        if (withdraw.N50notes > 0)
-                            n50 = "Notas de 50 reais: " + withdraw.N50notes.ToString() + Environment.NewLine;
-                        else
-                            n50 = "";
-
-                        if (withdraw.N20notes > 0)
-                            n20 = "Notas de 20 reais: " + withdraw.N20notes.ToString() + Environment.NewLine;
-                        else
-                            n20 = "";
-
-                        if (withdraw.N10notes > 0)
-                            n10 = "Notas de 10 reais: " + withdraw.N10notes.ToString() + Environment.NewLine;
-                        else
-                            n10 = "";
-
-                        MessageBox.Show("R$ " + amount.ToString() + " sacados"
-                                       + Environment.NewLine + Environment.NewLine
-                                       + n100 + n50 + n20 + n10,
-                                        "Dinheiro sacado");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Não é possivel Sacar"
-                                      +  Environment.NewLine + Environment.NewLine
-                                      + "Não é possível sacar o valor desejado "
-                                      + "apenas com notas de 100, 50, 20 ou 10 reais",  "Erro");
-                    }
-                }
-            }
+            if (tbxAmountWithdraw.Text == "")
+                MessageBox.Show("Valor nulo", "Erro");
             else
             {
-                MessageBox.Show(  "Entrada inválida"
-                                +  Environment.NewLine + Environment.NewLine
-                                + "Insira apenas números", "Erro");
-            }
+                if (int.TryParse(tbxAmountWithdraw.Text, out amount))
+                {
+                    if (amount <= 0)
+                        MessageBox.Show("Erro de valor inválido", "Erro");
+                    else
+                    {
+                        Atm withdraw = new Atm();
 
+                        if (withdraw.CalcWithdraw(amount))
+                        {
+                            for (i = 0; i < withdraw.N100notes; i++)
+                                listNotes.Add("100.00");
+
+                            for (i = 0; i < withdraw.N50notes; i++)
+                                listNotes.Add("50.00");
+
+                            for (i = 0; i < withdraw.N20notes; i++)
+                                listNotes.Add("20.00");
+
+                            for (i = 0; i < withdraw.N10notes; i++)
+                                listNotes.Add("10.00");
+
+                            resultNotes = "[" + listNotes[0];
+
+                            for (i = 1; i < listNotes.Count(); i++)
+                            {
+                                resultNotes += ", " + listNotes[i];
+                            }
+
+                            resultNotes += "]";
+
+                            MessageBox.Show("R$ " + amount.ToString() + " sacados"
+                                            + Environment.NewLine + resultNotes, "Saque efetuado");
+
+                            listNotes.Clear();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Notas indisponíveis", "Erro");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Entrada inválida, insira apenas números", "Erro");
+                }
+            }
             tbxAmountWithdraw.Text = "";
         }
 
